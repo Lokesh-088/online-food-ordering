@@ -17,9 +17,7 @@ import {
 } from 'lucide-react';
 import './index.css';
 
-/* --------------------------
-   Sample data (from user)
-   -------------------------- */
+
 const categories = [
   { id: 1, name: 'Pizza', icon: '🍕' },
   { id: 2, name: 'Burgers', icon: '🍔' },
@@ -44,15 +42,10 @@ const menuItems = [
 
 const popularItems = menuItems.filter(item => item.rating >= 4.5);
 
-/* --------------------------
-   Helper utilities
-   -------------------------- */
+
 const currency = (n) => `$${n.toFixed(2)}`;
 const generateOrderId = () => `ORD-${Math.floor(1000 + Math.random() * 9000)}`;
 
-/* --------------------------
-   Main App Component
-   -------------------------- */
 function App() {
   const [currentPage, setCurrentPage] = useState('home'); // home, menu, cart, checkout, orders
   const [cart, setCart] = useState([]);
@@ -139,14 +132,13 @@ function App() {
   const cartCount = cart.reduce((s, i) => s + i.quantity, 0);
   const cartTotal = cart.reduce((s, i) => s + i.quantity * i.price, 0);
 
-  /* Checkout / Orders */
+
   const handlePlaceOrder = async (e) => {
     e?.preventDefault();
     if (cart.length === 0) return alert('Your cart is empty.');
     if (!orderForm.name || !orderForm.address || !orderForm.phone) return alert('Please fill delivery details.');
 
     setIsLoading(true);
-    // simulate API / processing
     setTimeout(() => {
       const newOrder = {
         id: generateOrderId(),
